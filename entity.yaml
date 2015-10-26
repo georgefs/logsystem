@@ -8,10 +8,10 @@ rsyslog: ## custom
     path: /etc/rsyslog.d/gliacloud.conf
     template: | 
         set $!gliacloud!entity!msg = $msg;
-        set $!gliacloud!entity!machine = {{env[GLIACLOUD_MACHINE]}};
+        set $!gliacloud!entity!machine = "{{env[GLIACLOUD_MACHINE]}}";
         set $!gliacloud!entity!hostname = $hostname;
-        set $!gliacloud!entity!tag = $syslogtag
-        set $!gliacloud!entity!type = {{env[GLIACLOUD_TYPE]}};
+        set $!gliacloud!entity!tag = $syslogtag;
+        set $!gliacloud!entity!type = "{{env[GLIACLOUD_TYPE]}}";
         set $!gliacloud!entity!application = $app-name;
         set $!gliacloud!entity!input = $inputname;
         set $!gliacloud!entity!time = $timegenerated;
