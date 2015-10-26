@@ -1,12 +1,12 @@
 env: ## require
     GLIACLOUD_CLUSTER: web
     GLIACLOUD_PROJECT: test
-    GLIACLOUD_HOSTNAME:    {hostname}
+    GLIACLOUD_HOSTNAME:    %(hostname)s
     GLIACLOUD_TYPE:    job
 
 rsyslog: ## custom
     path: /etc/rsyslog.d/gliacloud.conf
-    template: | 
+    config: | 
         set $!gliacloud!entity!msg = $msg;
         set $!gliacloud!entity!project = "{{env[GLIACLOUD_PROJECT]}}";
         set $!gliacloud!entity!cluster = "{{env[GLIACLOUD_CLUSTER]}}";
@@ -19,9 +19,6 @@ rsyslog: ## custom
 
         template(name="gliacloud_tpl" type="subtree" subtree="$!gliacloud!entity")
         *.*     /tmp/rsyslog;gliacloud_tpl
+    setup: rsyslogd
 
-setup:  ## custom
-    path: /etc/profile.d/gliacloud_init.sh
-    template: |
-        {{export_env}}
-        kill -9 `ps -aux|grep rsyslogd|awk '{{{{print $2}}}}'` &&  rsyslogd
+
