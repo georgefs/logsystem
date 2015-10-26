@@ -19,6 +19,6 @@ for key, info in conf.items():
     template = info['template']
     with open(path, 'w+') as out:
         out.write(template.format(env=env, export_env=export_env))
-    print '{} write success'.format([atj)
+    print '{} write success'.format(path)
 
 
