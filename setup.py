@@ -17,8 +17,8 @@ del conf['env']
 for key, info in conf.items():
     path = info['path']
     template = info['template']
-#    with open(path, 'w+') as out:
-#        out.write(template.format(env=env, export_env=export_env))
-    print template.format(env=env, export_env=export_env)
+    with open(path, 'w+') as out:
+        out.write(template.format(env=env, export_env=export_env))
+    print '{} write success'.format([atj)
 
 
